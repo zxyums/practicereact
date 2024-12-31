@@ -1,19 +1,23 @@
-import _ from "lodash";
+import { useEffect } from "react";
 
-const getExcelColumnName = (num) => {
-  if (num < 1) return "Invalid Input";
+function App() {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      console.log("User is reloading or leaving the page.");
+      // Optional: Show a confirmation dialog
+      event.preventDefault();
+      event.returnValue = "";
+    };
 
-  return _.times(Math.ceil(num / 26), () => {
-    const remainder = (num - 1) % 26;
-    const char = String.fromCharCode(65 + remainder);
-    num = Math.floor((num - 1) / 26);
-    return char;
-  })
-    .reverse()
-    .join("");
-};
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
-// Example usage
-console.log(getExcelColumnName(1)); // A
-console.log(getExcelColumnName(28)); // AB
-console.log(getExcelColumnName(703)); // AAA
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  return <div>React Page Reload Detection</div>;
+}
+
+export default App;
