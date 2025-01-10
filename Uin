@@ -1,23 +1,130 @@
-import { useEffect } from "react";
+UI Design Document for Sanctions Screening Inventory Tool
 
-function App() {
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      console.log("User is reloading or leaving the page.");
-      // Optional: Show a confirmation dialog
-      event.preventDefault();
-      event.returnValue = "";
-    };
+1. Document Purpose
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+This document outlines the user interface design for the “Sanctions Screening Inventory Tool” page. It details all components, layouts, interactions, and styling guidelines to ensure a cohesive and user-friendly experience.
 
-    // Cleanup event listener on unmount
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+2. Page Overview
+	•	Page Title: FLU Assessment (Sanctions Screening Inventory Tool)
+	•	Purpose: This page is designed for managing assessments related to Global Commercial Banking. It includes functionality for adding, reviewing, and submitting assessment records.
 
-  return <div>React Page Reload Detection</div>;
-}
+3. Components Breakdown
 
-export default App;
+3.1 Header
+	•	Bank Logo: Displayed on the top-left for branding.
+Size: 40x40 pixels.
+Position: Top-left corner.
+	•	Page Title:
+Text: “Sanctions Screening Inventory Tool”.
+Font: Arial Bold, 18px.
+Color: #333 (dark gray).
+	•	User Profile Section:
+	•	User name (e.g., “Uma Mahesh Kommineni”) displayed.
+	•	Notification icon with badge count (e.g., “9472”).
+	•	Icon Style: Bell icon with red badge.
+	•	Notification Count Style: Arial, 14px, bold, white text on red background.
+
+3.2 Navigation Tabs
+	•	Active Tab: “FLU Assessment”
+Text: Bold, with a red underline to signify selection.
+	•	Other Tabs: Placeholder tabs for future sections.
+	•	Tab Spacing: 20px gap between tabs.
+
+3.3 Toolbar
+
+The toolbar contains key action buttons and utility controls:
+	•	Primary Actions:
+	•	+ Add New: Opens a modal to add a new assessment.
+Button Style: Blue background, white text, rounded corners.
+	•	Delegate Review: Assigns records for review.
+Button Style: Gray background, white text.
+	•	Submit to GES: Submits selected assessments to GES.
+Button Style: Green background, white text.
+	•	Utility Buttons:
+	•	Refresh: Reloads data in the table.
+	•	Filter/Reset: Allows users to filter table data based on column criteria.
+
+3.4 Table
+
+Table Layout
+	•	Column Headers:
+	•	Actions
+	•	Cycle
+	•	Assessment
+	•	Assessment Type
+	•	Status
+	•	DQCE Approved?
+	•	FLU
+Header Style: Bold, 14px, center-aligned.
+
+Table Body
+	•	Row Items: Data entries displayed row-wise with alternating row colors for readability.
+Row Hover Effect: Light gray background on hover.
+
+Icons in Actions Column
+	•	Edit Icon: Opens the row for inline editing.
+Icon: Pencil icon.
+	•	Delete Icon: Prompts a confirmation modal before deleting.
+Icon: Trash bin icon.
+
+Pagination
+	•	Page Size Selector: Drop-down to select rows per page (e.g., 15, 30, 50).
+	•	Navigation Controls:
+	•	Arrows for next, previous, first, and last pages.
+Style: Simple arrows with tooltips (e.g., “Next Page”).
+
+3.5 Footer
+	•	Legal Disclaimer: Links to “Legal Disclaimer” and “Contact Support.”
+Font: Arial, 12px, gray.
+	•	Version Information: Displays the tool’s version (e.g., “Version 1.0”).
+Style: Right-aligned, italicized.
+
+4. Visual Guidelines
+
+4.1 Colors
+	•	Primary Colors:
+	•	Blue (#0047AB) for buttons.
+	•	Red (#CC0000) for active states and notifications.
+	•	Background: Light gray (#F8F9FA) for the page and white (#FFFFFF) for the table.
+
+4.2 Typography
+	•	Font Family: Arial, sans-serif.
+	•	Font Sizes:
+	•	Headers: 18px.
+	•	Table: 14px.
+	•	Buttons: 14px, bold.
+
+4.3 Icons
+	•	Use lightweight, vector-based icons for performance.
+	•	Provide tooltips for accessibility.
+
+5. Interaction Design
+
+Button Actions
+	•	Add New: Opens a modal with input fields for a new assessment.
+	•	Delegate Review: Opens a dropdown to assign reviews to specific users.
+	•	Submit to GES: Validates selected rows before submission.
+
+Filters
+	•	Each column has filter options (e.g., dropdowns for Cycle, Status).
+	•	Real-time filtering with reset functionality.
+
+Table Navigation
+	•	Users can click on row entries to view detailed records in a new window.
+
+6. Responsive Design
+	•	Mobile View:
+	•	The table adapts to a single-column layout with expandable rows for detailed data.
+	•	Toolbar buttons stack vertically.
+	•	Tablet View: Retains the desktop layout with smaller font sizes.
+
+7. Accessibility
+	•	WCAG-compliant color contrast.
+	•	Keyboard navigation for all interactive elements.
+	•	Aria-labels for all icons and controls.
+
+8. Wireframe
+
+(You can add a mockup or wireframe image here to complement the text.)
+
+This document ensures a user-friendly and professional design, meeting the functional and visual standards of Bank of America. Let me know if you need further refinements!
