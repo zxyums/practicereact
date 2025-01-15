@@ -1,41 +1,129 @@
-Here are three more tricky React interview tasks suitable for a developer with 6 years of experience:
+Here are 10 tricky React interview tasks for a developer with 6 years of experience:
 
-1. Task: Build a Custom Hook for Form Validation
+1. Task: Custom React Router Implementation
 
-Create a custom React hook called useFormValidation to handle form validation. The requirements are:
-	•	The hook should accept an object of form fields, each containing its value and a validation rule (e.g., required, email).
-	•	It should return an object with field values, errors, and a boolean isValid to indicate whether the form is valid.
-	•	Implement validation rules like required, email, and minLength.
-	•	Display validation error messages next to each field if validation fails.
-
-Key Features to Test:
-	•	Custom hook creation: Using hooks like useState and useEffect.
-	•	Dynamic form handling: Managing multiple form fields and validations efficiently.
-	•	Reusable logic: Implementing generic validation logic that can be reused across components.
-
-2. Task: Build a React Table with Sorting and Pagination
-
-Create a reusable table component that accepts an array of objects and supports:
-	•	Sorting by columns in ascending/descending order.
-	•	Pagination (10 items per page) to navigate through data.
-	•	The table should have a loading spinner when fetching the data (you can simulate it with setTimeout).
-	•	Display an error message if the data fails to load.
+Build a simple custom React Router implementation with the following features:
+	•	Support for Route and Link components.
+	•	Ability to match exact and partial routes.
+	•	Render a “404 - Page Not Found” message when the route does not match.
+	•	Implement history state management and navigation.
 
 Key Features to Test:
-	•	Sorting and filtering: Handling sorting of different data types (strings, numbers).
-	•	Pagination: Efficient data display with large datasets and handling state changes.
-	•	Handling async operations: Mocking or simulating data fetching with loading and error states.
+	•	Understanding of routing in React.
+	•	State management and the React context API.
+	•	Manipulating the browser’s history and URL.
 
-3. Task: Implement a Drag-and-Drop List with React
+2. Task: Implement a Dark Mode Toggle
 
-Create a list of items where users can reorder items using drag-and-drop functionality. The requirements are:
-	•	Implement drag-and-drop using the react-dnd library or react-beautiful-dnd (or manually, if preferred).
-	•	The list should update the order of items in state when an item is moved.
-	•	Implement visual feedback for dragging (e.g., highlight the item being dragged).
-	•	Display a confirmation button to persist the new order to local storage or print the new order in the console.
+Create a dark mode toggle that:
+	•	Toggles between light and dark themes across the entire application.
+	•	Persists the theme preference in localStorage so that the user’s choice is saved across sessions.
+	•	Ensures smooth transitions between light and dark mode.
 
 Key Features to Test:
-	•	Drag-and-drop implementation: Knowledge of libraries like react-dnd or react-beautiful-dnd.
-	•	State management: Updating the list in the component’s state after reordering.
-	•	UI/UX: Ensuring a smooth and interactive user experience during dragging.
+	•	Use of React Context API for global state.
+	•	Efficient handling of theme transitions.
+	•	Managing persistent states using localStorage.
 
+3. Task: Build a Memoized Component
+
+Create a component that renders a list of numbers and:
+	•	Allows the user to add/remove numbers.
+	•	Uses React.memo to optimize the re-rendering of the list.
+	•	Uses useCallback to memoize the add and remove functions.
+	•	Shows the total sum of the list numbers, but only updates when the list changes.
+
+Key Features to Test:
+	•	Deep understanding of React performance optimization.
+	•	Using React.memo and useCallback effectively.
+	•	Managing lists and updates efficiently.
+
+4. Task: Build a Debounced Search with API Integration
+
+Create a search component that:
+	•	Accepts user input and fetches data from a mock API with a debounce mechanism.
+	•	Shows search results below the input field, updating only after the user has stopped typing for 500ms.
+	•	Displays a loading spinner during the API request.
+
+Key Features to Test:
+	•	Asynchronous operations with debouncing.
+	•	Handling loading and error states.
+	•	Efficient API calls to avoid over-fetching.
+
+5. Task: Implement a Multi-Tab Layout with Dynamic Content
+
+Create a component that displays a multi-tab layout where each tab loads dynamic content based on the selected tab. The requirements:
+	•	Each tab should load different content dynamically from a mock API.
+	•	Display a loading spinner while fetching the content for a tab.
+	•	Ensure only one tab’s content is rendered at a time.
+
+Key Features to Test:
+	•	Dynamic content loading and state management.
+	•	Tabbed navigation and rendering only active content.
+	•	Handling asynchronous operations within tabs.
+
+6. Task: Build a Pagination Component
+
+Create a pagination component that:
+	•	Takes a list of items and paginates them (e.g., 10 items per page).
+	•	Allows the user to go to the next/previous page, and jump to specific pages.
+	•	Displays the current page and total pages at the bottom of the pagination control.
+	•	Simulates data fetching with a delay.
+
+Key Features to Test:
+	•	Efficiently handling pagination in a list.
+	•	State management for page number and data.
+	•	Simulating asynchronous data fetching.
+
+7. Task: Create a Custom Dropdown Menu
+
+Build a custom dropdown component that:
+	•	Opens and closes when clicked.
+	•	Closes when clicked outside.
+	•	Supports dynamic list items, where the list can be changed via props.
+	•	Highlights the selected item and allows keyboard navigation (up/down arrows).
+
+Key Features to Test:
+	•	Event handling for click and keyboard interactions.
+	•	Managing dropdown state and closing the dropdown when clicking outside.
+	•	Efficiently handling dynamic list data.
+
+8. Task: Create a Modal Dialog with React
+
+Create a reusable modal component that:
+	•	Accepts dynamic content via props.
+	•	Opens and closes via the parent component’s state.
+	•	Uses React.createPortal to render the modal in a different part of the DOM (e.g., outside the root element).
+	•	Displays an overlay and closes the modal when the overlay is clicked.
+
+Key Features to Test:
+	•	Reusable component creation.
+	•	Understanding of React.createPortal.
+	•	Modal lifecycle and event handling.
+
+9. Task: Implement an Undo/Redo Feature
+
+Create a component that allows users to:
+	•	Add items to a list.
+	•	Undo/redo actions using buttons.
+	•	Keeps track of the actions (add/remove) and allows going back to the previous state (or forward) in a list.
+
+Key Features to Test:
+	•	Using stacks to handle undo/redo operations.
+	•	Efficient state management.
+	•	Understanding of how to track and manipulate historical states.
+
+10. Task: Build a Chat Application with WebSockets
+
+Create a simple chat application with the following features:
+	•	Establish a WebSocket connection and send/receive messages in real time.
+	•	Display a list of messages dynamically as they come in.
+	•	Allow the user to send new messages via an input field.
+	•	Automatically scroll to the latest message.
+
+Key Features to Test:
+	•	Real-time communication with WebSockets.
+	•	Efficient handling of real-time data and rendering.
+	•	Scrolling and UI updates in response to dynamic changes.
+
+These tasks will challenge developers on various aspects of React, including performance optimization, state management, advanced features, and real-world application development. Would you like any solutions or hints for these tasks?
