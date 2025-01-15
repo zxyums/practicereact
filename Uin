@@ -1,85 +1,17 @@
-Based on the additional requirements provided by the client, I will extend the UI design document to address the following points:
-	1.	Visual Guidelines (Appendix Section)
-	2.	Design for Pagination Feature
-	3.	Design for Tab Feature
-	4.	Design for Form-Level Autocomplete Components
-	5.	Action Sequence Diagram
+Here’s a tricky 10-minute React task designed for an experienced developer with 6 years of experience:
 
-Extended UI Design Document
+Requirement: Dynamic Debounced Search with Highlight
 
-Appendix Section: Visual Guidelines
-	1.	Typography:
-	•	Primary Font: Arial, sans-serif.
-	•	Font Sizes:
-	•	Headers: 16px-18px.
-	•	Body text: 14px.
-	•	Table Content: 12px-14px.
-	•	Font Weight: Use bold for titles and action buttons; regular for table data and labels.
-	2.	Color Palette:
-	•	Primary Color: Blue (#0047AB) for buttons and active states.
-	•	Secondary Color: Gray (#F8F9FA) for background and borders.
-	•	Warning Color: Red (#CC0000) for error messages and notifications.
-	3.	Icons:
-	•	Use SVG icons for sharp resolution.
-	•	Tooltips must accompany every icon for accessibility (e.g., “Edit”, “Delete”).
-	4.	Spacing and Padding:
-	•	Buttons: Minimum padding of 10px horizontally and vertically.
-	•	Table Rows: 8px vertical padding for better readability.
+Create a React component that implements a debounced search input. It should:
+	1.	Accept a list of strings (passed via props) and filter results based on the user’s input.
+	2.	Highlight the matching parts of the text in the results dynamically.
+	3.	Use a debouncing mechanism to prevent excessive renders during fast typing.
+	4.	Display “No results found” if no match exists.
 
-Design for Pagination Feature
-	1.	Layout:
-	•	Place pagination controls at the bottom-right of the table.
-	2.	Elements:
-	•	Current Page: Displayed as a highlighted number.
-	•	Navigation Buttons:
-	•	Arrows for navigating to the next/previous and first/last pages.
-	•	Disabled state for unavailable actions (e.g., “Previous” on page 1).
-	•	Page Size Selector: Drop-down with options (e.g., 15, 30, 50 rows per page).
-	3.	Behavior:
-	•	Dynamically update the table data based on the current page.
-	•	Smooth transitions for page changes without reloading the entire page.
-	4.	Style:
-	•	Selected Page: Bold number with a blue background.
-	•	Hover State: Change arrow colors to blue on hover.
+Key Features to Test:
+	•	Debouncing logic: Understanding of setTimeout or useDebounce hooks.
+	•	Controlled components: Handling useState and input changes.
+	•	Dynamic DOM manipulation: Highlighting matching substrings in JSX.
+	•	Performance awareness: Avoiding unnecessary re-renders.
 
-Design for Tab Feature
-	1.	Structure:
-	•	Tabs are horizontally aligned, directly beneath the header.
-	•	Each tab represents a logical section (e.g., “FLU Assessment”).
-	2.	Active Tab:
-	•	Highlighted with a red underline and bold text.
-	3.	Inactive Tabs:
-	•	Use gray text with no underline.
-	•	Switch to active state when clicked.
-	4.	Responsiveness:
-	•	On smaller screens, transform tabs into a dropdown menu for better usability.
-
-Design for Form-Level Autocomplete Components
-	1.	Input Field:
-	•	Text box with a dropdown arrow icon.
-	2.	Autocomplete Dropdown:
-	•	Appears below the input field upon typing.
-	•	Displays suggestions based on user input.
-	3.	Behavior:
-	•	Suggestions dynamically update with each keystroke.
-	•	Keyboard navigation enabled (up/down arrows to select, Enter to confirm).
-	4.	Validation:
-	•	Display a red outline and error message if the input is invalid or empty upon submission.
-	5.	Style:
-	•	Suggestions: White background with a light gray hover effect.
-	•	Selected Suggestion: Blue background with white text.
-
-Action Sequence Diagram
-
-Scenario: Submitting an Assessment
-
-User --> UI: Clicks "Submit to GES"  
-UI --> Backend: Sends selected row data for validation.  
-Backend --> UI: Returns validation results (e.g., success or error).  
-UI --> User: Displays success message or highlights errors in red.  
-
-	1.	Start: User selects rows in the table and clicks “Submit to GES”.
-	2.	Validation: Backend validates the data (e.g., required fields, format).
-	3.	Response: If successful, the system confirms submission; otherwise, it shows an error.
-
-Let me know if further details or wireframes are needed!
+Would you like the solution or hints for this task?
