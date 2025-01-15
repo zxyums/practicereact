@@ -1,18 +1,41 @@
-Here’s another tricky 10-minute React task for a seasoned developer:
+Here are three more tricky React interview tasks suitable for a developer with 6 years of experience:
 
-Requirement: Infinite Scroll with Dynamic API Pagination
+1. Task: Build a Custom Hook for Form Validation
 
-Create a React component that implements infinite scrolling to fetch paginated data from an API. The requirements are:
-	1.	Use a mock API (you can simulate it with setTimeout and Promise).
-	2.	Fetch 10 items per request and append them to the existing list.
-	3.	Trigger the next API call when the user scrolls to the bottom of the container.
-	4.	Display a loading spinner while fetching data.
-	5.	Handle the scenario where there are no more items to fetch (e.g., display “No more data”).
+Create a custom React hook called useFormValidation to handle form validation. The requirements are:
+	•	The hook should accept an object of form fields, each containing its value and a validation rule (e.g., required, email).
+	•	It should return an object with field values, errors, and a boolean isValid to indicate whether the form is valid.
+	•	Implement validation rules like required, email, and minLength.
+	•	Display validation error messages next to each field if validation fails.
 
 Key Features to Test:
-	•	API simulation: Understanding of Promise and asynchronous behavior.
-	•	Event handling: Listening for and handling scroll events.
-	•	State management: Efficiently appending data and managing loading states.
-	•	Optimization: Avoiding unnecessary API calls (e.g., while data is loading).
+	•	Custom hook creation: Using hooks like useState and useEffect.
+	•	Dynamic form handling: Managing multiple form fields and validations efficiently.
+	•	Reusable logic: Implementing generic validation logic that can be reused across components.
 
-Would you like the solution or hints for this one?
+2. Task: Build a React Table with Sorting and Pagination
+
+Create a reusable table component that accepts an array of objects and supports:
+	•	Sorting by columns in ascending/descending order.
+	•	Pagination (10 items per page) to navigate through data.
+	•	The table should have a loading spinner when fetching the data (you can simulate it with setTimeout).
+	•	Display an error message if the data fails to load.
+
+Key Features to Test:
+	•	Sorting and filtering: Handling sorting of different data types (strings, numbers).
+	•	Pagination: Efficient data display with large datasets and handling state changes.
+	•	Handling async operations: Mocking or simulating data fetching with loading and error states.
+
+3. Task: Implement a Drag-and-Drop List with React
+
+Create a list of items where users can reorder items using drag-and-drop functionality. The requirements are:
+	•	Implement drag-and-drop using the react-dnd library or react-beautiful-dnd (or manually, if preferred).
+	•	The list should update the order of items in state when an item is moved.
+	•	Implement visual feedback for dragging (e.g., highlight the item being dragged).
+	•	Display a confirmation button to persist the new order to local storage or print the new order in the console.
+
+Key Features to Test:
+	•	Drag-and-drop implementation: Knowledge of libraries like react-dnd or react-beautiful-dnd.
+	•	State management: Updating the list in the component’s state after reordering.
+	•	UI/UX: Ensuring a smooth and interactive user experience during dragging.
+
