@@ -1,17 +1,18 @@
-Here’s a tricky 10-minute React task designed for an experienced developer with 6 years of experience:
+Here’s another tricky 10-minute React task for a seasoned developer:
 
-Requirement: Dynamic Debounced Search with Highlight
+Requirement: Infinite Scroll with Dynamic API Pagination
 
-Create a React component that implements a debounced search input. It should:
-	1.	Accept a list of strings (passed via props) and filter results based on the user’s input.
-	2.	Highlight the matching parts of the text in the results dynamically.
-	3.	Use a debouncing mechanism to prevent excessive renders during fast typing.
-	4.	Display “No results found” if no match exists.
+Create a React component that implements infinite scrolling to fetch paginated data from an API. The requirements are:
+	1.	Use a mock API (you can simulate it with setTimeout and Promise).
+	2.	Fetch 10 items per request and append them to the existing list.
+	3.	Trigger the next API call when the user scrolls to the bottom of the container.
+	4.	Display a loading spinner while fetching data.
+	5.	Handle the scenario where there are no more items to fetch (e.g., display “No more data”).
 
 Key Features to Test:
-	•	Debouncing logic: Understanding of setTimeout or useDebounce hooks.
-	•	Controlled components: Handling useState and input changes.
-	•	Dynamic DOM manipulation: Highlighting matching substrings in JSX.
-	•	Performance awareness: Avoiding unnecessary re-renders.
+	•	API simulation: Understanding of Promise and asynchronous behavior.
+	•	Event handling: Listening for and handling scroll events.
+	•	State management: Efficiently appending data and managing loading states.
+	•	Optimization: Avoiding unnecessary API calls (e.g., while data is loading).
 
-Would you like the solution or hints for this task?
+Would you like the solution or hints for this one?
