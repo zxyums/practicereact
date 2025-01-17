@@ -1,12 +1,12 @@
 type Language = {
-  draftLanguageId: number | undefined;
+  draftLanguageId?: number;
   nonLatinLanguagesSupported: string;
   statusCode: string;
 };
 
 /**
  * Filters and updates the status of languages based on matching `nonLatinLanguagesSupported` keys.
- * Retains records with `draftLanguageId: undefined` as-is.
+ * Retains records without `draftLanguageId` as-is.
  *
  * @param {Language[]} languages - The array of language objects to process.
  * @param {string[]} inputKeys - Array of `nonLatinLanguagesSupported` keys to match against.
@@ -21,7 +21,7 @@ function updateStatusBasedOnKeys(
 
   // Update the languages array
   return languages.map((language) => {
-    // Retain records with `draftLanguageId: undefined`
+    // Retain records without `draftLanguageId`
     if (language.draftLanguageId === undefined) {
       return language;
     }
@@ -46,9 +46,9 @@ const languages: Language[] = [
   { draftLanguageId: 3417, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
   { draftLanguageId: 3418, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
   { draftLanguageId: 3419, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
-  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL010:French", statusCode: "1" }, // Should be retained as-is
+  { nonLatinLanguagesSupported: "NL010:French", statusCode: "1" }, // Retained as-is
   { draftLanguageId: 3422, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL015", statusCode: "0" }, // Should be retained as-is
+  { nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Retained as-is
 ];
 
 const inputKeys: string[] = ["NL012", "NL001"];
