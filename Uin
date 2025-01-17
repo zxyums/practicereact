@@ -1,42 +1,63 @@
 const _ = require('lodash');
 
 /**
- * Updates statusCode for duplicates, ensuring only the first occurrence remains active.
+ * Filters records, giving priority to defined `draftLanguageId`.
+ * Retains undefined `draftLanguageId` records if their `nonLatinLanguagesSupported`
+ * does not match with any existing normalized key.
+ *
  * @param {Array} data - The input array of objects.
- * @param {String} groupByKey - The key to group duplicates (e.g., "nonLatinLanguagesSupported").
- * @returns {Array} - Updated array with statusCode set to "1" for the first and "0" for duplicates.
+ * @returns {Array} - Filtered array.
  */
-function updateDuplicateStatusCodes(data, groupByKey) {
-  // Group the data by the specified key
-  const grouped = _.groupBy(data, groupByKey);
+function filterWithPriorityAndRetention(data) {
+  // Normalize `nonLatinLanguagesSupported` to consider partial matches as the same key
+  const normalizedData = data.map((item) => ({
+    ...item,
+    normalizedKey: item.nonLatinLanguagesSupported.split(':')[0], // Extract the base key (e.g., NL001)
+  }));
 
-  // Process each group to set statusCode
-  return _.flatMap(grouped, (group) => {
-    let isActiveSet = false; // Track if "1" has been assigned
-    return group.map((item) => {
-      if (!isActiveSet) {
-        isActiveSet = true; // Set the first one as active
-        return { ...item, statusCode: "1" };
-      } else {
-        return { ...item, statusCode: "0" }; // Deactivate the rest
-      }
-    });
+  // Get all unique normalized keys with valid `draftLanguageId` and `statusCode: "1"`
+  const validKeys = new Set(
+    normalizedData
+      .filter(
+        (item) => item.statusCode === "1" && item.draftLanguageId !== undefined
+      )
+      .map((item) => item.normalizedKey)
+  );
+
+  // Process each record
+  const filtered = normalizedData.filter((item) => {
+    // If the record has a valid draftLanguageId, always retain it
+    if (item.draftLanguageId !== undefined) {
+      return true;
+    }
+
+    // If the normalizedKey doesn't exist in the valid keys, retain the record
+    if (!validKeys.has(item.normalizedKey)) {
+      return true;
+    }
+
+    // Otherwise, remove the record (as it has an undefined draftLanguageId and matches an existing key)
+    return false;
   });
+
+  // Remove the temporary `normalizedKey` before returning
+  return filtered.map(({ normalizedKey, ...rest }) => rest);
 }
 
 // Example Usage
 const languages = [
-  { draftLanguageId: 3399, nonLatinLanguagesSupported: "NL002:Japanese Katakana", statusCode: "1" },
-  { draftLanguageId: 3399, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
-  { draftLanguageId: 3404, nonLatinLanguagesSupported: "NL016:Kannada", statusCode: "1" },
-  { draftLanguageId: 3404, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { draftLanguageId: 3399, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
-  { draftLanguageId: 3399, nonLatinLanguagesSupported: "NL010:French", statusCode: "1" },
-  { draftLanguageId: 3402, nonLatinLanguagesSupported: "NL010:French", statusCode: "1" },
-  { draftLanguageId: 3393, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" }
+  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL012", statusCode: "1" },
+  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL001", statusCode: "1" },
+  { draftLanguageId: 3416, nonLatinLanguagesSupported: "NL005", statusCode: "1" },
+  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL005", statusCode: "1" },
+  { draftLanguageId: 3419, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
+  { draftLanguageId: 3358, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
+  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
+  { draftLanguageId: 3417, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
+  { draftLanguageId: 3418, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
+  { draftLanguageId: undefined, nonLatinLanguagesSupported: "NL015", statusCode: "1" }, // Should be retained
+  { draftLanguageId: 3420, nonLatinLanguagesSupported: "NL010:French", statusCode: "1" },
 ];
 
-// Call the method with the array and the key to group by
-const updatedLanguages = updateDuplicateStatusCodes(languages, "nonLatinLanguagesSupported");
-
-console.log(updatedLanguages);
+const filteredLanguages = filterWithPriorityAndRetention(languages);
+console.log(filteredLanguages);
