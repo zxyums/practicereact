@@ -1,6 +1,9 @@
-Here’s the finalized implementation as requested:
+Here’s the updated implementation to:
+	1.	Prioritize draftLanguageId objects when nonLatinLanguagesSupported like NL007 is found.
+	2.	Remove objects without draftLanguageId if a match with draftLanguageId exists.
+	3.	Ensure all duplicates for the same nonLatinLanguagesSupported have statusCode: "0", except one, which retains statusCode: "1".
 
-TypeScript Code
+Final TypeScript Implementation
 
 type Language = {
   draftLanguageId?: number;
@@ -79,7 +82,35 @@ const inputKeys: string[] = ["NL012", "NL001", "NL007"];
 const updatedLanguages = prioritizeAndFilterLanguages(languages, inputKeys);
 console.log(updatedLanguages);
 
+Explanation of Changes
+	1.	Group by nonLatinLanguagesSupported:
+	•	Group all records based on their base nonLatinLanguagesSupported key (e.g., NL012 from NL012:Arabic).
+	2.	Filter Out Non-Draft Records:
+	•	If a group contains at least one record with draftLanguageId, all records without draftLanguageId are removed from the group.
+	3.	Retain One Active Record:
+	•	Ensure only one record in the group retains statusCode: "1".
+	•	Set all other records in the group to statusCode: "0".
+	4.	Handle Records Without Draft:
+	•	Records without draftLanguageId are retained as-is if no matching draft exists.
+
 Example Output
+
+Given the input:
+
+const languages: Language[] = [
+  { draftLanguageId: 3358, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
+  { draftLanguageId: 3417, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
+  { draftLanguageId: 3418, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
+  { draftLanguageId: 3419, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
+  { nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Should be removed
+  { draftLanguageId: 3420, nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Prioritized
+  { draftLanguageId: 3422, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
+  { nonLatinLanguagesSupported: "NL015", statusCode: "1" }, // Retained as-is (no draft)
+];
+
+const inputKeys: string[] = ["NL012", "NL001", "NL007"];
+
+The output will be:
 
 [
   { draftLanguageId: 3358, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" }, // Active
@@ -92,9 +123,11 @@ Example Output
 ];
 
 Key Features
-	•	Draft Priority: Always prioritizes records with draftLanguageId over those without.
-	•	One Active Record: Ensures only one statusCode: "1" per nonLatinLanguagesSupported key.
-	•	Efficient Grouping: Uses the base key for grouping and ensures all duplicates are handled correctly.
-	•	Retain Non-Draft Records: If no draft exists, retains non-draft records without changes.
+	1.	Prioritizes Draft Records:
+	•	When duplicates exist, records with draftLanguageId are prioritized over those without.
+	2.	Ensures One Active Record:
+	•	Only one record per nonLatinLanguagesSupported group retains statusCode: "1".
+	3.	Handles Undefined Drafts:
+	•	Records without draftLanguageId are retained only if no matching draft exists.
 
-Let me know if you need further assistance!
+Let me know if you need further clarifications or enhancements!
