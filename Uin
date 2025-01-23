@@ -1,133 +1,14 @@
-Here’s the updated implementation to:
-	1.	Prioritize draftLanguageId objects when nonLatinLanguagesSupported like NL007 is found.
-	2.	Remove objects without draftLanguageId if a match with draftLanguageId exists.
-	3.	Ensure all duplicates for the same nonLatinLanguagesSupported have statusCode: "0", except one, which retains statusCode: "1".
+const _ = require('lodash');
 
-Final TypeScript Implementation
-
-type Language = {
-  draftLanguageId?: number;
-  nonLatinLanguagesSupported: string;
-  statusCode: string;
-};
-
-/**
- * Filters and updates the status of languages based on matching `nonLatinLanguagesSupported` keys.
- * Prioritizes `draftLanguageId` objects, retains only one active record (`statusCode: "1"`),
- * and removes non-draft objects if a matching draft exists.
- *
- * @param {Language[]} languages - The array of language objects to process.
- * @param {string[]} inputKeys - Array of `nonLatinLanguagesSupported` keys to match against.
- * @returns {Language[]} - Updated array of languages.
- */
-function prioritizeAndFilterLanguages(
-  languages: Language[],
-  inputKeys: string[]
-): Language[] {
-  // Convert input keys to a Set for efficient lookup
-  const validKeys = new Set(inputKeys);
-
-  // Group by the base key of `nonLatinLanguagesSupported`
-  const grouped = languages.reduce<Record<string, Language[]>>((acc, language) => {
-    const baseKey = language.nonLatinLanguagesSupported.split(':')[0];
-
-    // Group under base key
-    acc[baseKey] = [...(acc[baseKey] || []), language];
-
-    return acc;
-  }, {});
-
-  // Process each group
-  const updatedLanguages: Language[] = [];
-
-  for (const [key, group] of Object.entries(grouped)) {
-    // Filter out non-draft objects if a draft object exists in the group
-    const hasDraft = group.some((language) => language.draftLanguageId !== undefined);
-
-    const filteredGroup = hasDraft
-      ? group.filter((language) => language.draftLanguageId !== undefined) // Retain only draft objects
-      : group;
-
-    // Ensure only one object retains `statusCode: "1"`
-    let foundActive = false; // Flag to retain one `statusCode: "1"`
-    filteredGroup.forEach((language) => {
-      if (validKeys.has(key) && !foundActive && language.statusCode === "1") {
-        // Keep the first matching record as active
-        updatedLanguages.push({ ...language, statusCode: "1" });
-        foundActive = true;
-      } else {
-        // Set the rest to inactive
-        updatedLanguages.push({ ...language, statusCode: "0" });
-      }
-    });
-  }
-
-  return updatedLanguages;
-}
-
-// Example Usage
-const languages: Language[] = [
-  { draftLanguageId: 3358, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { draftLanguageId: 3417, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { draftLanguageId: 3418, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
-  { draftLanguageId: 3419, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
-  { nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Should be removed because a draft exists
-  { draftLanguageId: 3420, nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Prioritized
-  { draftLanguageId: 3422, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { nonLatinLanguagesSupported: "NL015", statusCode: "1" }, // Retained as-is (no draft)
+const data = [
+  { id: 1, name: 'Item 1', updatedDate: '2025-01-10' },
+  { id: 2, name: 'Item 2', updatedDate: '' },
+  { id: 3, name: 'Item 3', updatedDate: '2025-01-15' },
+  { id: 4, name: 'Item 4', updatedDate: null },
 ];
 
-const inputKeys: string[] = ["NL012", "NL001", "NL007"];
+const sortedData = _.sortBy(data, (item) => {
+  return item.updatedDate ? new Date(item.updatedDate) : Infinity;
+});
 
-const updatedLanguages = prioritizeAndFilterLanguages(languages, inputKeys);
-console.log(updatedLanguages);
-
-Explanation of Changes
-	1.	Group by nonLatinLanguagesSupported:
-	•	Group all records based on their base nonLatinLanguagesSupported key (e.g., NL012 from NL012:Arabic).
-	2.	Filter Out Non-Draft Records:
-	•	If a group contains at least one record with draftLanguageId, all records without draftLanguageId are removed from the group.
-	3.	Retain One Active Record:
-	•	Ensure only one record in the group retains statusCode: "1".
-	•	Set all other records in the group to statusCode: "0".
-	4.	Handle Records Without Draft:
-	•	Records without draftLanguageId are retained as-is if no matching draft exists.
-
-Example Output
-
-Given the input:
-
-const languages: Language[] = [
-  { draftLanguageId: 3358, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { draftLanguageId: 3417, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { draftLanguageId: 3418, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
-  { draftLanguageId: 3419, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" },
-  { nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Should be removed
-  { draftLanguageId: 3420, nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Prioritized
-  { draftLanguageId: 3422, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" },
-  { nonLatinLanguagesSupported: "NL015", statusCode: "1" }, // Retained as-is (no draft)
-];
-
-const inputKeys: string[] = ["NL012", "NL001", "NL007"];
-
-The output will be:
-
-[
-  { draftLanguageId: 3358, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "1" }, // Active
-  { draftLanguageId: 3417, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
-  { draftLanguageId: 3418, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
-  { draftLanguageId: 3422, nonLatinLanguagesSupported: "NL012:Arabic", statusCode: "0" },
-  { draftLanguageId: 3419, nonLatinLanguagesSupported: "NL001:English", statusCode: "1" }, // Active
-  { draftLanguageId: 3420, nonLatinLanguagesSupported: "NL007", statusCode: "1" }, // Prioritized
-  { nonLatinLanguagesSupported: "NL015", statusCode: "1" }, // Retained
-];
-
-Key Features
-	1.	Prioritizes Draft Records:
-	•	When duplicates exist, records with draftLanguageId are prioritized over those without.
-	2.	Ensures One Active Record:
-	•	Only one record per nonLatinLanguagesSupported group retains statusCode: "1".
-	3.	Handles Undefined Drafts:
-	•	Records without draftLanguageId are retained only if no matching draft exists.
-
-Let me know if you need further clarifications or enhancements!
+console.log(sortedData);
