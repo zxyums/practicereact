@@ -1,14 +1,32 @@
-const _ = require('lodash');
+const columnDefs = [
+  {
+    field: 'date',
+    sortable: true,
+    comparator: (date1, date2) => {
+      // Handle null or undefined values
+      if (date1 == null && date2 == null) return 0; // Both are null/undefined
+      if (date1 == null) return 1; // date1 is null/undefined, goes last
+      if (date2 == null) return -1; // date2 is null/undefined, goes last
 
-const data = [
-  { id: 1, name: 'Item 1', updatedDate: '2025-01-10' },
-  { id: 2, name: 'Item 2', updatedDate: '' },
-  { id: 3, name: 'Item 3', updatedDate: '2025-01-15' },
-  { id: 4, name: 'Item 4', updatedDate: null },
+      // Convert to Date objects for proper comparison (if not already)
+      const d1 = new Date(date1);
+      const d2 = new Date(date2);
+
+      return d1.getTime() - d2.getTime(); // Ascending order
+    },
+  },
+  {
+    field: 'name',
+    sortable: true,
+  },
 ];
 
-const sortedData = _.sortBy(data, (item) => {
-  return item.updatedDate ? new Date(item.updatedDate) : Infinity;
-});
-
-console.log(sortedData);
+const gridOptions = {
+  columnDefs,
+  rowData: [
+    { date: '2025-01-28', name: 'Alice' },
+    { date: null, name: 'Bob' },
+    { date: '2025-01-25', name: 'Charlie' },
+    { date: undefined, name: 'Diana' },
+  ],
+};
