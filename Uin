@@ -34,7 +34,7 @@
     return new Date(date1).getTime() - new Date(date2).getTime(); // Sort in ascending order
   },
 
-  // Show local browser time zone on hover dynamically with DD-MMM-YYYY HH:mm format
+  // React-compatible cellRenderer for tooltip with local time
   cellRenderer: (params) => {
     if (!params.value) return ''; // Don't render anything for null values
 
@@ -52,11 +52,11 @@
     // Use `params.colDef.valueFormatter` to get formatted UTC date
     const utcFormatted = params.colDef.valueFormatter(params);
 
-    // Ensure proper HTML rendering in AG Grid
-    const div = document.createElement('div');
-    div.setAttribute('title', `Local Time: ${localDate}`);
-    div.textContent = utcFormatted;
-
-    return div; // Return DOM element instead of HTML string
+    // Return JSX instead of a raw DOM element
+    return (
+      <div title={`Local Time: ${localDate}`}>
+        {utcFormatted}
+      </div>
+    );
   }
 }
