@@ -2,51 +2,44 @@ import { ColDef } from 'ag-grid-community';
 import React from 'react';
 
 const updatedDateColumn: ColDef = {
-  field: 'updatedDate',
+  field: 'flu.updatedDate', // ✅ Ensure proper nested field reference
   headerName: 'Last Update Date (UTC)',
   minWidth: 240,
   width: 240,
   sortable: true,
 
-  // ✅ Ensure the value is correctly retrieved from the data (prevents empty display issues)
+  // ✅ Ensure the value is correctly retrieved from the nested data structure
   valueGetter: (params) => {
-    return params.data?.updatedDate ? new Date(params.data.updatedDate).toISOString() : null;
+    return params.data?.flu?.updatedDate ? new Date(params.data.flu.updatedDate) : null;
   },
 
   // ✅ Sorting: Null values go last, proper date comparison
-  comparator: (date1: string | null, date2: string | null): number => {
+  comparator: (date1: Date | null, date2: Date | null): number => {
     if (!date1 && !date2) return 0; // Both are null
     if (!date1) return 1; // Null should go last
     if (!date2) return -1; // Null should go last
 
-    return new Date(date1).getTime() - new Date(date2).getTime(); // Sort ascending
+    return date1.getTime() - date2.getTime(); // Sort ascending
   },
 
   // ✅ Ensure correct UTC display in grid and local time in tooltip
-  cellRenderer: (params: { value: string | null }) => {
+  cellRenderer: (params: { value: Date | null }) => {
     if (!params.value) return ''; // Handle null values gracefully
 
-    const utcDate = new Date(params.value);
+    const utcDate = new Date(params.value.toISOString()); // ✅ No extra conversion needed
 
-    // ✅ Display UTC time in the grid (DD-MMM-YYYY HH:mm UTC)
-    const utcFormatted: string = utcDate.toLocaleString('en-GB', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false, // 24-hour format
-      timeZone: 'UTC', // Ensure it's in UTC
-    }) + ' UTC';
+    // ✅ Directly extract UTC time for display (DD-MMM-YYYY HH:mm:ss UTC)
+    const utcFormatted: string =
+      `${utcDate.getUTCDate()}-${utcDate.toLocaleString('en-GB', { month: 'short' })}-${utcDate.getUTCFullYear()} ` +
+      `${String(utcDate.getUTCHours()).padStart(2, '0')}:${String(utcDate.getUTCMinutes()).padStart(2, '0')}:${String(utcDate.getUTCSeconds()).padStart(2, '0')} UTC`;
 
-    // ✅ Convert UTC date manually to the user's actual local timezone
+    // ✅ Convert UTC to the user's actual local timezone
     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const localDate = new Date(utcDate.toLocaleString('en-US', { timeZone: userTimeZone }));
+    const localDate = new Date(params.value.toLocaleString('en-US', { timeZone: userTimeZone }));
 
-    // ✅ Format Local Time Correctly (DD-MMM-YYYY HH:mm)
+    // ✅ Format Local Time Correctly (DD-MMM-YYYY HH:mm:ss)
     const localFormatted: string = `${localDate.getDate()}-${localDate.toLocaleString('en-GB', { month: 'short' })}-${localDate.getFullYear()} ` +
-      `${String(localDate.getHours()).padStart(2, '0')}:${String(localDate.getMinutes()).padStart(2, '0')} ${userTimeZone}`;
+      `${String(localDate.getHours()).padStart(2, '0')}:${String(localDate.getMinutes()).padStart(2, '0')}:${String(localDate.getSeconds()).padStart(2, '0')} ${userTimeZone}`;
 
     return (
       <div title={`Local Time: ${localFormatted}`}>
