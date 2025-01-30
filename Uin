@@ -1,77 +1,53 @@
-Since you have AG Grid Enterprise 29.1.0 and cannot upgrade your license, you need to downgrade AG Grid React to match the enterprise version. Follow these steps carefully.
+import { ColDef } from 'ag-grid-community';
+import React from 'react';
 
-Step-by-Step Guide
+const updatedDateColumn: ColDef = {
+  field: 'flu.updatedDate', // ✅ Ensure correct nested field path
+  headerName: 'Last Update Date (UTC)',
+  minWidth: 240,
+  width: 240,
+  sortable: true,
 
-1. Uninstall Current AG Grid Packages
+  // ✅ Extract the correct timestamp from the backend
+  valueGetter: (params) => {
+    return params.data?.flu?.updatedDate ? new Date(params.data.flu.updatedDate) : null;
+  },
 
-Since your ag-grid-react version (31.3.2) is newer than your ag-grid-enterprise (29.1.0), you must uninstall the current versions first:
+  // ✅ Sorting: Ensures latest date appears first (Descending Order)
+  comparator: (date1: Date | null, date2: Date | null): number => {
+    if (!date1 && !date2) return 0; // Both are null
+    if (!date1) return 1; // Null should go last
+    if (!date2) return -1; // Null should go last
 
-npm uninstall ag-grid-react ag-grid-community ag-grid-enterprise
+    return date2.getTime() - date1.getTime(); // Sort descending (latest first)
+  },
 
-This ensures a clean installation without version conflicts.
+  // ✅ Correct UTC display in grid and local time in tooltip
+  cellRenderer: (params: { value: Date | null }) => {
+    if (!params.value) return ''; // Handle null values gracefully
 
-2. Install AG Grid 29.1.0
+    const utcDate = new Date(params.value.toISOString()); // ✅ Extract UTC timestamp correctly
 
-Now, install version 29.1.0 of AG Grid packages:
+    // ✅ Display UTC time in the grid (DD-MMM-YYYY HH:mm:ss UTC)
+    const utcFormatted: string =
+      `${utcDate.getUTCDate()}-${utcDate.toLocaleString('en-GB', { month: 'short' })}-${utcDate.getUTCFullYear()} ` +
+      `${String(utcDate.getUTCHours()).padStart(2, '0')}:${String(utcDate.getUTCMinutes()).padStart(2, '0')}:${String(utcDate.getUTCSeconds()).padStart(2, '0')} UTC`;
 
-npm install --save ag-grid-react@29.1.0 ag-grid-community@29.1.0 ag-grid-enterprise@29.1.0
+    // ✅ Convert UTC to the user's actual local timezone **properly**
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const localDate = new Date(utcDate.toLocaleString('en-US', { timeZone: userTimeZone }));
 
-This makes sure all AG Grid packages are at the same version.
+    // ✅ Format Local Time Correctly (DD-MMM-YYYY HH:mm:ss)
+    const localFormatted: string = 
+      `${localDate.getDate()}-${localDate.toLocaleString('en-GB', { month: 'short' })}-${localDate.getFullYear()} ` +
+      `${String(localDate.getHours()).padStart(2, '0')}:${String(localDate.getMinutes()).padStart(2, '0')}:${String(localDate.getSeconds()).padStart(2, '0')} ${userTimeZone}`;
 
-3. Register Your Enterprise License Key
-
-In your main entry file (index.js or App.js), before rendering the grid, add the license key:
-
-import { LicenseManager } from 'ag-grid-enterprise';
-
-LicenseManager.setLicenseKey('YOUR_LICENSE_KEY');
-
-Replace 'YOUR_LICENSE_KEY' with the actual key you received.
-
-4. Update AG Grid Imports
-
-Ensure your AG Grid imports are correct:
-
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import 'ag-grid-enterprise';
-
-5. Test Enterprise Features
-
-Now, confirm if AG Grid Enterprise is working correctly by using features like row grouping or pivoting:
-
-const columnDefs = [
-  { field: "athlete", rowGroup: true },
-  { field: "age" },
-  { field: "country" },
-];
-
-const gridOptions = {
-  columnDefs,
-  rowGroupPanelShow: "always",
+    return (
+      <div title={`Local Time: ${localFormatted}`}>
+        {utcFormatted}
+      </div>
+    );
+  }
 };
 
-If the grid loads with row grouping, your Enterprise version is active.
-
-6. Restart Your App
-
-After installing and setting up the license key, restart your development server:
-
-npm start
-
-Check the browser console for any AG Grid license warnings.
-
-7. Verify the License is Working
-	•	If there are no warnings like “No License Key Found”, the setup is correct.
-	•	If you see license-related errors, ensure:
-	•	The license key is correct.
-	•	The key is added before rendering the grid.
-	•	You have restarted the application.
-
-Final Notes
-	•	Since your Enterprise license is for 29.1.0, always use the same version for ag-grid-react, ag-grid-community, and ag-grid-enterprise.
-	•	If you ever get a newer license, you can upgrade AG Grid to the latest version.
-	•	If you see any issues, let me know the error message so I can help troubleshoot.
-
-Would you like help with testing specific AG Grid Enterprise features?
+export default updatedDateColumn;
