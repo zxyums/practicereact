@@ -1,0 +1,227 @@
+Rajesh illuri​​​​​​​
+Email: rajeshilluri1@gmail.com​​
+Mobile: +1-4694737038
+LinkedIn: https://www.linkedin.com/in/rajeshilluri/
+​​​​​
+Experience Summary: -
+• 8.5+ Years of professional experience in Front End (UI) with Html5, CSS3, JavaScript, Angular and React.
+• Good Understanding of HTML5, CSS3, JavaScript, Typescript, Angular Framework, React Libraries.
+• I have 6+ years of experience in Angular versions 8,10,13,15.
+• I have 3.5 years of work experience in JAVA 8.
+• Having 8 Years of professional experience in Analysis, Design, Development, Maintenance of JavaScript, AngularJS, Angular, NgRx, React, React Hooks and related applications.
+• Worked on web-based portlet’s with Liferay 6 and Liferay 7 DXP platform.
+• Worked on UI GRID with JavaScript and AngularJS, AG GRID with angular and react, Kendo UI.
+• Responsible for creating and maintaining common service REST API calls from Client Side.
+• Worked custom template and cell template creation using ui-grid, ag-grid.
+• Experience in working with High Charts in AngularJS and Angular to visualizing sales data, financial metrics, or trade trends over time with line charts, bar charts, or pie charts.
+• Proficient in analyzing & resolving functional issues and performance bottlenecks.
+• Experience in working with TFS (Team Foundation Server).
+• Experience in working with Ant, Maven, Gradle with Eclipse IDE.
+• Experience in working with node, npm, angular cli with VS CODE.
+• Experience with high charts and chartjs.
+• Having experience as figma, adobe and other manual Tools.
+• Provided the complex solutions for the multiple inbound and outbounds web apps.
+• Involved in requirement estimation for design of an application from business to production deployment.
+• Expertise in reviewing client requirement, prioritize requirement creating project proposal (scope, estimation) and baseline project plan.
+• Experience in all stages of Software development life cycle (SDLC) starting from gathering Business specifications, analysis, design, development, testing and implementation of projects using various methodologies like V-model, Waterfall, Agile, Scrum.
+• Experience in writing optimized stored procedures, Functions, Views on oracle platform.
+• Good knowledge in performance tuning on stored procedures, Queries Etc.
+• Extensive Experience with IDE tools like Eclipse, VS Code, Maven, Good written and verbal communication, analytical, leadership skills and an effective team player.
+• Vast experience on resolving functional and business-related queries.
+• Formulated build and deployment process for web apps for both Anguarjs (portlets) and Angular.
+• Experience in development and deployment of web apps using Jenkins and Run deck.
+• Experience in application development using spring and hibernate.
+• Experienced in Presentation Tier development using JSPs, Custom Tags.
+• Having knowledge in applying Themes and Skins using bootstrap, material UI.
+• Good Communication skills, a quick learner and faster in implementing.
+• Interest and ability to learn and adapt new technologies and to deliver output in short deadlines.
+• Experience in working with SVN, Clear Case, CVS, and Git.
+• Experience in working with Agile (Scrum) methodology.
+• Experience in working with SOAP Web Services XML, Restful Web API Services
+• Expertise in designing application architecture based on Maven, JSF, SOAP and REST API Web Services, Java Spring and hibernate.
+• Experience in using web servers like Apache Tomcat.
+• Developed Web Apps applications in IDE like Eclipse, VSCode.
+• Involved in manual testing of the applications.
+• Involved in meetings to gather information and requirements from the clients.
+• Research-oriented, motivated, proactive, self-starter with strong technical, analytical, and interpersonal skills. Capable of leading a team of technical resources.
+• Excellent communication & customer facing skills.
+• Preparing Minutes of Meeting discussed with the client.
+• Acted as a subject matter expert in front-end development methodologies.
+• Advocated for the adoption of best practices and standards across teams.
+• Demonstrated ability to drive innovation and excellence in front end development.
+• Passionate about creating engaging user experiences.
+• Recognized for problem-solving skills and attention to detail. Managed multiple projects simultaneously, prioritizing tasks effectively.
+• Proven ability to lead and inspire teams to achieve project goals. Implemented continuous integration and deployment pipelines with Jenkins and Run deck.
+• Enhanced team productivity through streamlined workflows and tools. Evaluated and recommended technology solutions to address business needs.
+• Maintained awareness of security and compliance standards in front-end development.
+• Committed to ongoing learning and professional development in the field.
+ 
+Professional Experience:
+Envisn​​                                                            ​​​ Jan 2025 to till date
+Project: Netvision
+Role: Software Developer
+      Team Size: 15
+                                                         
+Responsibilities:
+• Worked closely with UI/UX designers to implement user interfaces that met design specifications and usability requirements.
+• Translated visual designs and wireframes into responsive HTML/CSS layouts.
+• Developed custom AngularJS directives and components to enhance application functionality and user experience.
+• Optimized application performance by identifying and addressing bottlenecks in code or rendering.
+• Collaborated with cross-functional teams including designers, back-end developers, and QA testers to deliver features on time and within scope.
+• Conducted user testing and gathered feedback to iterate and improve the user interface.
+• Maintained documentation for front-end codebase, including code comments and usage instructions.
+• Participated in agile development processes, including sprint planning, daily stand-ups, and retrospectives.
+• Led the development of Angular applications, providing technical leadership and guidance to the team.
+• Designed and implemented scalable and maintainable front-end architectures using Angular CLI and related tools.
+• Conducted architecture reviews and proposed improvements to optimize performance and maintainability.
+• Collaborated with product owners and stakeholders to gather requirements and define technical solutions.
+ 
+PattemDigital ​​​​​​​    ​​May2024 to Dec 2024
+Project – T-Mobile
+Lead Software Engineer
+Client: Adobe
+ 
+• Committed to ongoing learning and professional development in the field.
+• Wrote clean, modular, and maintainable JavaScript code following Angular best practices.
+• Collaborated with back-end developers to integrate front-end logic with server-side APIs.
+• Participated in code reviews to ensure code quality, consistency, and adherence to coding
+• standards.
+• Debugged and troubleshooted issues reported by QA or end-users, providing timely resolutions.
+• Stayed updated with the latest trends and developments in AngularJS and front-end web
+• technologies.
+• Assisted in the migration of legacy applications to AngularJS, refactoring code as necessary.
+• Assisted senior developers in implementing features and resolving bugs in AngularJS
+• applications.
+• Learned and applied AngularJS best practices and coding conventions under mentorship.
+• Contributed to code reviews and followed up on actionable feedback to improve coding skills.
+• Gained familiarity with front-end development tools and technologies commonly used with
+• AngularJS, such as npm, webpack, and TypeScript.
+• Acted as a subject matter expert in front-end technologies, providing guidance on tool selection,
+• performance optimization, and security best practices.
+• Presented technical concepts and architecture proposals to executive stakeholders, advocating for investment in frontend technology initiatives.
+Accenture Solutions​​​​ ​                         Dec 2021 to April 2024
+Project: FO&OTC – Portal and Limits
+Role: Custom Packaged Specialist - Lead Developer
+      Client: Bank of America
+      Team Size: 18
+                                                         
+Responsibilities:
+• Designed and implemented hybrid architectures combining Angular and React components for complex web applications.
+• Conducted architecture assessments and provided recommendations for refactoring legacy applications to modern front-end frameworks.
+• Established patterns for code reuse, component composition, and state management across Angular and React applications.
+• Developed custom solutions to address cross-cutting concerns such as authentication, authorization, and internationalization.
+• Collaborated with DevOps teams to define deployment strategies and optimize performance for Angular and React applications.
+• Acted as a subject matter expert in front-end technologies, providing guidance on tool selection, performance optimization, and security best practices.
+• Presented technical concepts and architecture proposals to executive stakeholders, advocating for investment in frontend technology initiatives.
+• Mentored and coached developers across the organization, fostering a culture of continuous learning and innovation.
+• Led a team of React developers in the successful delivery of large-scale React projects.
+• Established coding standards, development guidelines, and best practices for React development.
+• Conducted regular code reviews, ensuring adherence to coding standards and architectural principles.
+• Collaborated with backend teams to design API contracts and data models to support React applications.
+• Implemented continuous integration and deployment pipelines for React applications using tools like Jenkins or CI/CD.
+• Acted as a liaison between technical and non-technical stakeholders, translating business requirements into technical solutions.
+• Facilitated knowledge sharing sessions and workshops to disseminate best practices and foster collaboration.
+• Stayed abreast of industry trends and advancements in React development, advocating for their adoption where appropriate.
+ 
+ 
+Professional Experience:
+ 
+Accenture Solutions​​                                                             Dec 2019 to Nov 2021
+Project: FOOTC – Portal and Reporting
+Role: Sr. Application Development Analyst – Senior Developer
+      Client: Bank of America
+      Team Size: 15
+ 
+                                                         
+Responsibilities:
+• Worked closely with UI/UX designers to implement user interfaces that met design specifications and usability requirements.
+• Translated visual designs and wireframes into responsive HTML/CSS layouts.
+• Developed custom AngularJS directives and components to enhance application functionality and user experience.
+• Optimized application performance by identifying and addressing bottlenecks in code or rendering.
+• Collaborated with cross-functional teams including designers, back-end developers, and QA testers to deliver features on time and within scope.
+• Conducted user testing and gathered feedback to iterate and improve the user interface.
+• Maintained documentation for front-end codebase, including code comments and usage instructions.
+• Participated in agile development processes, including sprint planning, daily stand-ups, and retrospectives.
+• Led the development of Angular applications, providing technical leadership and guidance to the team.
+• Designed and implemented scalable and maintainable front-end architectures using Angular CLI and related tools.
+• Conducted architecture reviews and proposed improvements to optimize performance and maintainability.
+• Collaborated with product owners and stakeholders to gather requirements and define technical solutions.
+• Implemented automated testing strategies using Jasmine and Karma, ensuring code quality and reliability.
+• Contributed to the open-source community by sharing code snippets, writing tutorials, or participating in forums.
+• Evaluated emerging technologies and frameworks to assess their suitability for future projects.
+• Provided mentorship and knowledge transfer sessions to junior developers, fostering their professional growth.
+ 
+Professional Experience:
+Accenture Solutions​​                                                         ​      Sep 2018 – Nov 2019
+Project: FOOTC - Portal
+Role: Application Development Analyst – Software Developer
+Client: Bank of America  
+Team Size: 12
+                                                       
+Responsibilities:
+• Involved in the end-to-end Development of Project covering all phases of Software Development Life Cycle including Requirement Analysis, Designing, Build/Construction, Unit/ Testing using karma/jasmine and Deployment.
+• Involved in Daily stand-up meetings, Estimating and tracking User stories in Jira, Analyzing Graphs, Bugs, defects, and various other features.
+• Developed scalable web applications using Angular framework, adhering to best practices and architectural patterns.
+• Implemented complex features and functionalities using Angular components, services, and modules.
+• Integrated front-end logic with back-end JAVA APIs, ensuring seamless data flow and communication. Optimized application performance by identifying and resolving performance bottlenecks and implementing lazy loading strategies.
+• Created API’s using JAVA based on the client business requirement.
+• Conducted code reviews, provided constructive feedback, and enforced coding standards to maintain code quality and consistency.
+• Collaborated with UI/UX designers to implement responsive and visually appealing user interfaces.
+• Troubleshooted and debugged issues reported by QA or end-users, delivering timely solutions and patches.
+• Gathering the requirements, producing proper Documentation, and assisting other team members in developing.
+• Used GIT as version controlling tool and Maven for building and deploying applications bitbucket.
+• Understanding High-level business requirements and identifying the relevant functional and technical requirements for any enhancements.
+• Involved in resolving the team issues.
+• Used Jenkins for CI (Continuous Integration) and CD (Continuous Deployment).
+• Coding and testing of enhancements within the project.
+• Coordination with the Production Release Management team.
+• Responsible in using and adhering to the standard design patterns.
+ 
+Professional Experience:
+Accenture Solutions ​​​​​             ​​Feb 2017 – Sep 2018
+Project – FOOTC E-Operations
+Role: Application Development Analyst – Software Developer
+Client: Bank of America    
+Team Size: 8
+                                                     
+Responsibilities:
+• Developed and maintained web applications using the AngularJS framework. 
+• Implemented responsive user interfaces based on provided designs and wireframes. 
+• Wrote clean, modular, and maintainable JavaScript code following AngularJS best practices. Collaborated with back-end developers to integrate front-end logic with server-side APIs. Participated in code reviews to ensure code quality, consistency, and adherence to coding standards.
+• Debugged and troubleshooted issues reported by QA or end-users, providing timely resolutions.
+• Stayed updated with the latest trends and developments in AngularJS and front-end web technologies.
+• Assisted in the migration of legacy applications to AngularJS, refactoring code as necessary.
+• Assisted senior developers in implementing features and resolving bugs in AngularJS applications.
+• Learned and applied AngularJS best practices and coding conventions under mentorship.
+• Contributed to code reviews and followed up on actionable feedback to improve coding skills.
+• Gained familiarity with front-end development tools and technologies commonly used with AngularJS, such as npm, webpack, and TypeScript.
+• Collaborated with team members to estimate the effort required for implementing new features or resolving issues. Actively sought opportunities for learning and professional growth, such as attending training sessions or online courses related to AngularJS development.
+• Demonstrated a willingness to take on new challenges and responsibilities as part of career progression within the front-end development field.
+ 
+Professional Experience:
+Accenture Solutions                                             ​​                                 Aug 2016 – Jan 2017
+Role: Application Development Analyst
+Client: Accenture Internal
+Team Size: 10
+ 
+ 
+ 
+Responsibilities:
+• Utilized AngularJS framework to create dynamic user interfaces and enhance user experience.
+• Collaborated with cross-functional teams including designers and backend developers.
+• Integrated front-end components with server-side logic to ensure seamless functionality.
+• Utilized AngularJS directives, controllers, and services to build modular and reusable components.
+• Implemented data binding and dependency injection to manage application state and logic.
+• Integrated third-party libraries and modules to extend AngularJS functionality as needed.
+• Participated in Agile development methodologies, contributing to sprint planning and daily stand-ups.
+• Demonstrated ability to write clean, maintainable code and optimize application performance.
+• Actively sought opportunities for learning and self-improvement in web development technologies.
+• Adapted quickly to changing project requirements and delivered solutions on time.
+• Thrived in fast-paced environments, contributing to project success and stakeholder satisfaction.
+Committed to staying updated with emerging technologies and industry trends.
+Education
+• 2014 – Bachelor of Technology from Jawaharlal Nehru Technology University Anantapur
+Awards
+• Accenture North America Pinnacle award in 2023 December.
+• Ace award in 2021 March and 2022 November.
+ 
