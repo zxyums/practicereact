@@ -1,0 +1,301 @@
+Here are some tricky React.js programming output-based questions that you might encounter in an interview for an 8-year experience level role:
+
+1. State Updates and Closures
+
+Question
+
+What will be the output when you click the button multiple times?
+
+import React, { useState } from "react";
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setTimeout(() => {
+      setCount(count + 1);
+    }, 2000);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+};
+
+export default Counter;
+
+Answer
+
+The counter will always update by +1 even if you click multiple times.
+
+Explanation
+	•	The setTimeout captures the old state of count due to closures.
+	•	Since count does not update immediately, all setTimeout functions reference the initial value of count.
+	•	To fix this, use the functional form of setCount:
+
+setTimeout(() => {
+  setCount((prevCount) => prevCount + 1);
+}, 2000);
+
+2. JSX Evaluations
+
+Question
+
+What will be the output?
+
+const data = [1, 2, 3];
+
+const App = () => {
+  return (
+    <div>
+      {data.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
+      {false}
+      {null}
+      {undefined}
+      {true}
+    </div>
+  );
+};
+
+export default App;
+
+Answer
+
+<p>1</p>
+<p>2</p>
+<p>3</p>
+
+Explanation
+	•	Falsy values (false, null, undefined, true) do not render anything in JSX.
+	•	This is a common mistake in conditional rendering.
+
+3. Object vs String as Key
+
+Question
+
+What will be logged to the console?
+
+const obj = { name: "React" };
+
+const App = () => {
+  return (
+    <div>
+      {obj["name"]}
+      {obj.name}
+      {obj["na" + "me"]}
+    </div>
+  );
+};
+
+console.log(obj["name"] === obj.name);
+console.log(obj["na" + "me"] === obj.name);
+
+export default App;
+
+Answer
+
+true
+true
+
+Rendered Output:
+
+ReactReactReact
+
+Explanation
+	•	Object keys in JavaScript behave dynamically, so obj["name"] and obj.name are the same.
+	•	String concatenation works, so obj["na" + "me"] === obj.name.
+
+4. useEffect Dependency Array Issue
+
+Question
+
+What will be the output when you click the button?
+
+import React, { useState, useEffect } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Effect ran!");
+  }, [count]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count)}>Click Me</button>
+    </div>
+  );
+};
+
+export default App;
+
+Answer
+	•	Effect ran! will log only once initially, even when you click the button.
+
+Explanation
+	•	The dependency array has [count], but setCount(count) doesn’t change the state.
+	•	React detects that state has not changed, so the effect does not re-run.
+
+5. Event Bubbling and Synthetic Events
+
+Question
+
+What happens when you click “Child”?
+
+import React from "react";
+
+const App = () => {
+  const handleParentClick = () => {
+    console.log("Parent Clicked");
+  };
+
+  const handleChildClick = (e) => {
+    e.stopPropagation();
+    console.log("Child Clicked");
+  };
+
+  return (
+    <div onClick={handleParentClick}>
+      <button onClick={handleChildClick}>Child</button>
+    </div>
+  );
+};
+
+export default App;
+
+Answer
+
+Child Clicked
+
+Explanation
+	•	Normally, clicking Child would trigger both handleChildClick and handleParentClick due to event bubbling.
+	•	However, e.stopPropagation() prevents the event from reaching the parent.
+
+6. useState with Objects
+
+Question
+
+What will be the output?
+
+import React, { useState } from "react";
+
+const App = () => {
+  const [user, setUser] = useState({ name: "Alice", age: 25 });
+
+  const updateAge = () => {
+    setUser({ age: 26 });
+  };
+
+  return (
+    <div>
+      <p>{user.name}</p>
+      <p>{user.age}</p>
+      <button onClick={updateAge}>Update Age</button>
+    </div>
+  );
+};
+
+export default App;
+
+Answer
+
+undefined
+26
+
+Explanation
+	•	Clicking the button will remove name from user because setUser({ age: 26 }) replaces the entire object.
+	•	The correct way is to spread the previous state:
+
+setUser((prevUser) => ({ ...prevUser, age: 26 }));
+
+7. useEffect Cleanup
+
+Question
+
+What will be logged in the console when the component mounts and unmounts?
+
+import React, { useState, useEffect } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Mounted");
+
+    return () => {
+      console.log("Unmounted");
+    };
+  }, []);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+
+export default App;
+
+Answer
+
+Mounted
+
+When the component unmounts:
+
+Unmounted
+
+Explanation
+	•	The empty dependency array ([]) makes useEffect run only once on mount.
+	•	The cleanup function runs when the component unmounts.
+
+8. Asynchronous useState Updates
+
+Question
+
+What will be logged in the console?
+
+import React, { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+    console.log(count);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+};
+
+export default App;
+
+Answer
+
+0
+
+Explanation
+	•	React batches state updates in the same function execution.
+	•	setCount(count + 1) doesn’t use the updated value immediately.
+	•	Use functional updates to fix:
+
+setCount((prev) => prev + 1);
+setCount((prev) => prev + 1);
+setCount((prev) => prev + 1);
+
+This will correctly increment by 3.
+
+These tricky React.js questions cover closures, event bubbling, state updates, useEffect behavior, and rendering optimizations—exactly the kind of things expected from an 8-year experienced developer.
